@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "1035569012166-f05nh3m5h0vv0905c6444tcqatli321t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koreea_colea_sasha",
+            "certificate_hash": "73b2df20f487aeb41a74da2ba5b9babbcfcf62bf"
+          }
+        },
+        {
           "client_id": "1035569012166-854fuio4uqhpckfuj72t39vj2fa1vie6.apps.googleusercontent.com",
           "client_type": 3
         }
