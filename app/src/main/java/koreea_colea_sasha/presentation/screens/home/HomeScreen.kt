@@ -52,6 +52,7 @@ fun HomeScreen(
     homeViewModel: HomeViewModel,
     taskListViewModel: TaskListViewModel = viewModel(modelClass = TaskListViewModel::class.java)
 ){
+    val backgroundColor = MaterialTheme.colors.background
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),

@@ -21,6 +21,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +35,7 @@ import koreea_colea_sasha.presentation.screens.addedittask.AddEditTaskViewModel
 import koreea_colea_sasha.presentation.screens.calendar.CalendarViewModel
 import koreea_colea_sasha.presentation.screens.home.HomeViewModel
 import koreea_colea_sasha.ui.theme.MainBackground
+import koreea_colea_sasha.ui.theme.TodoListAppTheme
 import koreea_colea_sasha.ui.theme.TodoListAppTheme
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -82,6 +84,9 @@ class MainActivity : ComponentActivity() {
         // Получение текущего местоположения
         getCurrentLocation()
 
+        //val background = if (MaterialTheme.colors.isLight) LightBackground else DarkBackground
+
+
         setContent {
 
             val addEditTaskViewModel = viewModel(AddEditTaskViewModel::class.java)
@@ -95,18 +100,19 @@ class MainActivity : ComponentActivity() {
                 homeViewModel.getWeatherData(lat.doubleValue, long.doubleValue)
                 homeViewModel.getUserLocation(lat.doubleValue, long.doubleValue)
             }
+            val LightBackground = Color(0xFFFFFFFF) // белый
+            val DarkBackground = Color(0xFF121212)  // тёмно-серый (почти чёрный)
 
-            TodoListAppTheme {
+            TodoListAppTheme { // ⬅️ Тема применяется здесь
                 Surface(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MainBackground),
-                    color = Color.White
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background // ⬅️ Используем цвет из темы
                 ) {
+                    // Твой основной UI:
                     Navigation(
-                        addEditTaskViewModel = addEditTaskViewModel,
-                        homeViewModel = homeViewModel,
-                        calendarViewModel = calendarViewModel,
+                        addEditTaskViewModel = viewModel(),
+                        homeViewModel = viewModel(),
+                        calendarViewModel = viewModel(),
                     )
                 }
             }

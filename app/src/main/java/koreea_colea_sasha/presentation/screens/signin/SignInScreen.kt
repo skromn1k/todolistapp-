@@ -122,7 +122,7 @@ fun AppTitle() {
                     fontSize = 28.sp
                 )
             ) {
-                append("\nTodo List")
+                append("\nDone Do")
             }
         },
         fontWeight = FontWeight.Light,
