@@ -2,6 +2,7 @@ package koreea_colea_sasha.presentation.screens.signin
 
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,10 +30,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.codearmy.todolistapp.R
+import com.example.koreea_colea_sasha.R
 import koreea_colea_sasha.ui.theme.*
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
@@ -73,7 +75,7 @@ fun SignInScreen(navController: NavController) {
             AppDescription()
         }
 
-        SignInGoogleButton(navController)
+        SignInWithGoogleButton(navController)
     }
 }
 
@@ -131,38 +133,48 @@ fun AppTitle() {
 }
 
 @Composable
-fun SignInGoogleButton(navController: NavController) {
+fun SignInWithGoogleButton(navController: NavController) {
     val context = LocalContext.current
+    val oneTapClient = remember { Identity.getSignInClient(context) }
 
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-        try {
-            val account = task.getResult(ApiException::class.java)!!
-            val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-            Firebase.auth.signInWithCredential(credential)
-                .addOnCompleteListener { authResult ->
-                    if (authResult.isSuccessful) {
-                        Toast.makeText(context, "Google Sign-In Successful", Toast.LENGTH_SHORT).show()
-                        navController.navigate("home_screen")
-                    } else {
-                        Toast.makeText(context, "Sign-In Failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-        } catch (e: ApiException) {
-            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    val gso = remember {
-        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(context.getString(R.string.default_web_client_id)) // см. google-services.json
-            .requestEmail()
+    val signInRequest = remember {
+        BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    .setServerClientId(context.getString(R.string.default_web_client_id)) // из google-services.json
+                    .setFilterByAuthorizedAccounts(false)
+                    .build()
+            )
+            .setAutoSelectEnabled(true)
             .build()
     }
 
-    val googleSignInClient = remember { GoogleSignIn.getClient(context, gso) }
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult()
+    ) { result ->
+        try {
+            val credential = oneTapClient.getSignInCredentialFromIntent(result.data)
+            val idToken = credential.googleIdToken
+
+            if (idToken != null) {
+                val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                Firebase.auth.signInWithCredential(firebaseCredential)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(context, "Google Sign-In Successful", Toast.LENGTH_SHORT).show()
+                            navController.navigate("home_screen")
+                        } else {
+                            Toast.makeText(context, "Sign-In Failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            } else {
+                Toast.makeText(context, "No ID token!", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(context, "Sign-In Error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -171,8 +183,14 @@ fun SignInGoogleButton(navController: NavController) {
     ) {
         Button(
             onClick = {
-                val signInIntent = googleSignInClient.signInIntent
-                launcher.launch(signInIntent)
+                oneTapClient.beginSignIn(signInRequest)
+                    .addOnSuccessListener { result ->
+                        val intentSenderRequest = IntentSenderRequest.Builder(result.pendingIntent.intentSender).build()
+                        launcher.launch(intentSenderRequest)
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(context, "One Tap Sign-In Failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
             },
             modifier = Modifier
                 .shadow(12.dp, RoundedCornerShape(10.dp), true)
@@ -190,7 +208,6 @@ fun SignInGoogleButton(navController: NavController) {
         Spacer(modifier = Modifier.height(50.dp))
     }
 }
-
 @Composable
 fun VectorArt() {
     Image(

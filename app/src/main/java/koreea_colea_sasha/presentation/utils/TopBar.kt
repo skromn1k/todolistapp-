@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+import com.example.koreea_colea_sasha.R
 import koreea_colea_sasha.ui.theme.MainBackground
 import koreea_colea_sasha.ui.theme.interBold
 import koreea_colea_sasha.ui.theme.interRegular

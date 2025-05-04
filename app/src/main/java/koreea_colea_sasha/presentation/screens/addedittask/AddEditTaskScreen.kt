@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.koreea_colea_sasha.R
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import koreea_colea_sasha.presentation.utils.TopBar
 import koreea_colea_sasha.ui.theme.DarkGray
@@ -262,7 +263,7 @@ fun InputTaskDueDate(
                     }),
             painter = painterResource(
                 id = if (taskDueDate != "No due date" && onEditTask) R.drawable.close_icon
-                     else R.drawable.calendar_icon2
+                     else R.drawable.calendar_icon
             ),
             contentDescription = null
         )

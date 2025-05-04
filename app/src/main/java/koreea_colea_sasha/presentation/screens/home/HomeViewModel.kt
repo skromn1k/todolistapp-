@@ -3,7 +3,7 @@ package koreea_colea_sasha.presentation.screens.home
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import koreea_colea_sasha.data.WeatherDataSource
-import com.codearmy.todolistapp.R
+import com.example.koreea_colea_sasha.R
 import koreea_colea_sasha.data.LocationDataSource
 import java.time.ZoneId
 import java.time.ZonedDateTime

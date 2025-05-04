@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
+import com.example.koreea_colea_sasha.R
 import koreea_colea_sasha.domain.model.Task
 import koreea_colea_sasha.presentation.navigations.NavScreen
 import koreea_colea_sasha.ui.theme.DarkGray

@@ -24,8 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.codearmy.todolistapp.R
-
+import com.example.koreea_colea_sasha.R
 import koreea_colea_sasha.presentation.navigations.NavScreen
 import koreea_colea_sasha.presentation.task.TaskList
 import koreea_colea_sasha.presentation.task.TaskListViewModel

@@ -70,7 +70,7 @@ fun SignOutButton(navController: NavController) {
                         .clickable(onClick = {
                             showDialog = false
                             Firebase.auth.signOut()
-                            LoginManager.getInstance().logOut()
+                            //LoginManager.getInstance().logOut() //Facebook out
                             navController.navigate("signin_screen")
                         }),
                     text = "Sign Out",

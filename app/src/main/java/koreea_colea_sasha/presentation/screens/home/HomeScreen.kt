@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.koreea_colea_sasha.R
 
 import koreea_colea_sasha.presentation.userinfo.UserName
 import koreea_colea_sasha.presentation.userinfo.UserPicture
