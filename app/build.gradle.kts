@@ -92,6 +92,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation ("com.google.firebase:firebase-auth")
 
     // Google Sign-In & Location
     implementation("com.google.android.gms:play-services-auth:21.0.0")
