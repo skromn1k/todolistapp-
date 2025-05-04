@@ -22,10 +22,10 @@ class HomeViewModel() : ViewModel() {
     private val zoneId = ZoneId.of("GMT")
     private val zonedDateTime = ZonedDateTime.now(zoneId).toString().substring(0, 14) + "00"
 
-    private var temperature: Double by mutableStateOf(0.0)
-    private var humidity: Double by mutableStateOf(0.0)
-    private var precipitation: Double by mutableStateOf(0.0)
-    private var weatherCode: Int by mutableStateOf(0)
+    private var temperature: Double by mutableDoubleStateOf(0.0)
+    private var humidity: Double by mutableDoubleStateOf(0.0)
+    private var precipitation: Double by mutableDoubleStateOf(0.0)
+    private var weatherCode: Int by mutableIntStateOf(0)
 
     private var city: String by mutableStateOf("")
     private var town: String by mutableStateOf("")
@@ -105,8 +105,8 @@ class HomeViewModel() : ViewModel() {
         return precipitation
     }
 
-    fun getLocation() : String {
-        if(city != null) return "$city City, $state, $region"
-        return "$town, $state, $region"
+    fun getLocation(): String {
+        return "$city City, $state, $region"
     }
+
 }
