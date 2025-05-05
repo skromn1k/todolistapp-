@@ -9,6 +9,7 @@ plugins {
 
 }
 
+
 kapt {
     correctErrorTypes = true
 }
@@ -16,7 +17,14 @@ kapt {
 android {
     namespace = "com.example.BobrCIHCAHUL"
     compileSdk = 35
-
+    signingConfigs {
+        create("release") {
+            storeFile = file("my-release-key.jks") // путь к твоему keystore
+            storePassword = "123456789"
+            keyAlias = "my-key-alias"
+            keyPassword = "123456789"
+        }
+    }
     defaultConfig {
         applicationId = "com.example.BobrCIHCAHUL"
         minSdk = 21
@@ -31,12 +39,9 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
