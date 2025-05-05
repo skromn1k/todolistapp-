@@ -14,11 +14,11 @@ kapt {
 }
 
 android {
-    namespace = "com.example.koreea_colea_sasha"
+    namespace = "com.example.BobrCIHCAHUL"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.koreea_colea_sasha"
+        applicationId = "com.example.BobrCIHCAHUL"
         minSdk = 21
 
         targetSdk = 36

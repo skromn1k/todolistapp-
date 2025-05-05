@@ -1,49 +1,49 @@
 {
   "project_info": {
-    "project_number": "1035569012166",
-    "project_id": "koreeacoleasasha",
-    "storage_bucket": "koreeacoleasasha.firebasestorage.app"
+    "project_number": "720392088442",
+    "project_id": "bobrcihcahul",
+    "storage_bucket": "bobrcihcahul.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1035569012166:android:3b01dd7fc134ed293da6c7",
+        "mobilesdk_app_id": "1:720392088442:android:7b4a31189a0cff31e2c4c3",
         "android_client_info": {
-          "package_name": "com.example.koreea_colea_sasha"
+          "package_name": "com.example.BobrCIHCAHUL"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1035569012166-8uorkmosk2bqpar3f2u4t5m75mm5qn3g.apps.googleusercontent.com",
+          "client_id": "720392088442-5ag5oe8edbmurg6bli2jqcguum0dvd0q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.koreea_colea_sasha",
-            "certificate_hash": "d9b55a80aa5514db9345d668f4ec22ea774feeeb"
+            "package_name": "com.example.BobrCIHCAHUL",
+            "certificate_hash": "26e55996fb479e226244256d61631732b6ebc1cb"
           }
         },
         {
-          "client_id": "1035569012166-f05nh3m5h0vv0905c6444tcqatli321t.apps.googleusercontent.com",
+          "client_id": "720392088442-jorrjmkoco0pjd7d2jsjbp7p28tpa35f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.koreea_colea_sasha",
-            "certificate_hash": "73b2df20f487aeb41a74da2ba5b9babbcfcf62bf"
+            "package_name": "com.example.BobrCIHCAHUL",
+            "certificate_hash": "c4247c396e4666e7e000ee9ee5ad7fb11a054d8e"
           }
         },
         {
-          "client_id": "1035569012166-854fuio4uqhpckfuj72t39vj2fa1vie6.apps.googleusercontent.com",
+          "client_id": "720392088442-j0iel982keg0jtt8pab1lsapvh85jom6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCGaGmMNs4KnwMoeLGQvdg5BGeX4c5WgQ"
+          "current_key": "AIzaSyDQ1F2PFHeYDAUI69i3erMZ7nl3JHxcwVk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1035569012166-854fuio4uqhpckfuj72t39vj2fa1vie6.apps.googleusercontent.com",
+              "client_id": "720392088442-j0iel982keg0jtt8pab1lsapvh85jom6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
