@@ -36,7 +36,7 @@ fun DaysOfWeekTitle(daysOfWeek: List<DayOfWeek>) {
                 textAlign = TextAlign.Center,
                 text = dayOfWeek
                     .getDisplayName(TextStyle.SHORT, Locale.getDefault()).toString()
-                    .subSequence(0, 3)
+                    .take(3)
                     .toString()
                     .uppercase(),
                 fontSize = 12.sp,
