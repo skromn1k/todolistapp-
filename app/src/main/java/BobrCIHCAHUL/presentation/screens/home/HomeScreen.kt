@@ -272,7 +272,7 @@ fun UserLocation(
         .padding(20.dp, 10.dp, 0.dp, 0.dp)
         .width(250.dp)) {
         Text(
-            text = "Weather today at $userLocation:",
+            text = "Weather today at your city:",
             fontSize = 12.sp,
             fontWeight = FontWeight.Light,
             fontFamily = interLight
